@@ -46,7 +46,7 @@ will let you delete entries using text menu in terminal.
 
 ### Dependencies:
 
-[dmenu](http://tools.suckess.org/dmenu) (optional, recommended), `xclip`, `xsel`
+[dmenu](http://tools.suckless.org/dmenu) (optional, recommended), `xclip`, `xsel`
 
 under Debian you can get them with:
 
