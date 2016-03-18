@@ -9,7 +9,7 @@ This version allows you to manage (add, remove, purge) entries in your clipboard
 - **copy** an entry from history to clipboard
 - **remove** entries from history on demand (new!)
 - **autoremove empty** or blank entries (new!)
-- **limit duplicates** creation (new!)
+- **limit duplicates** creation (in progress)
 - **purge** history on demand (new!)
 - option to use **cli-based menu** instead of `dmenu` (new!)
 - accept any `dmenu` options on commandline 
@@ -54,6 +54,7 @@ under Debian you can get them with:
 
 ### TODO:
 
+- removing duplicate of currently selected entry somtimes deletes both files (in progress, urgent) 
 - use pure `bash`, remove all unnecessary calls to external tools (in progress, not urgent)
 - some dmenu "skinning" depending on what we are doing (copy/delete) (in progress, not urgent)
 - purging history by sending SIGHUP to `clipmenud` seems more 'standard' (in progress, not urgent)
