@@ -2,7 +2,7 @@
 
 `clipmenu-im(proved)` is a simple clipboard history managment script in `bash`.
 
-This version allows you to *manage*: inspect, reuse, and remove entries in your clipboard history.
+This version allows you to manage: inspect, reuse, and remove entries in your clipboard history.
 
 ## Features:
 
@@ -22,23 +22,23 @@ First start `clipmenud` daemon:
 
     clipmenud &
 
-Then use `clipmenu-im` to copy any entry from history to clipboard:
+Then use `clipmenu-im` to **copy** any entry from history to clipboard:
 
     clipmenu-im
 
 now you can paste it the usual way.
 
-To delete any entry from the history:
+To **delete** any entry from the history:
 
     clipmenu-im -d
 
 It will let you choose lines to be deleted multiple times, when you are done press `C-c`.
 
-If you want to purge the history, use:
+If you want to **purge** the history, use:
 
     clipmenu-im -D
 
-If you would like to use `clipmenu-im` with cli-based menu instead of `dmenu` add `-c` switch to any of the above commands, eg:
+If you would like to use `clipmenu-im` with **cli-based menu** instead of `dmenu` add `-c` switch to any of the above commands, eg:
 
     clipmenu-im -c -d
 
