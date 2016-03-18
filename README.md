@@ -2,7 +2,7 @@
 
 `clipmenu-im(proved)` is a simple clipboard history managment script in `bash`.
 
-This version allows you to manage: inspect, reuse, and remove entries in your clipboard history.
+This version allows you to manage (add, remove, purge) entries in your clipboard history.
 
 ## Features:
 
@@ -44,6 +44,14 @@ If you would like to use `clipmenu-im` with **cli-based menu** instead of `dmenu
 
 will let you delete entries using text menu in terminal.
 
+### Dependencies:
+
+[dmenu](http://tools.suckess.org/dmenu) (optional, recommended), `xclip`, `xsel`
+
+under Debian you can get them with:
+
+    sudo apt-get install suckless-tools xclip xsel
+
 ### TODO:
 
 - use pure `bash`, remove all unnecessary calls to external tools (in progress, not urgent)
@@ -52,7 +60,7 @@ will let you delete entries using text menu in terminal.
 
 ## Credits:
 
-The `clipmenu-im` is the largely rewritten version of [clipmenu](https://github.com/cdown/clipmenu) by cdown.
+The `clipmenu-im` is the extended and rewritten version of [clipmenu](https://github.com/cdown/clipmenu) by cdown.
 The `clipmenud` is the original code by cdown. 
 
 ## Copyright:
