@@ -47,7 +47,7 @@ will let you delete entries using text menu in terminal.
 ### TODO:
 
 - use pure `bash`, remove all unnecessary calls to external tools (in progress, not urgent)
-- some dmenu "skinning" depending on what we are doing (copy/delete) (in progree, not urgent)
+- some dmenu "skinning" depending on what we are doing (copy/delete) (in progress, not urgent)
 - purging history by sending SIGHUP to `clipmenud` seems more 'standard' (in progress, not urgent)
 
 ## Credits:
