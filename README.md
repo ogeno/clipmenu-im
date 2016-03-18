@@ -54,3 +54,8 @@ will let you delete entries using text menu in terminal.
 
 The `clipmenu-im` is the largely rewritten version of [clipmenu](https://github.com/cdown/clipmenu) by cdown.
 The `clipmenud` is the original code by cdown. 
+
+## Copyright:
+
+Licensed under GNU General Public License v3 (see License file).
+Copyright (C) 2016 Tomasz Winiarski
