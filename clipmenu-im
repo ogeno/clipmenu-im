@@ -64,7 +64,6 @@ while : ; do
   if [[ "$cli_menu" -eq 1 ]]; then
     select chosen_line in "${ordered_selections[@]}"; do break; done
   else
-    # chosen_line=$(menu_wyboru <(printf '%s\n' "${ordered_selections[@]}"))
     chosen_line=$(printf '%s\n' "${ordered_selections[@]}" | dmenu $(set_dmenu_opts)) 
   fi
 
