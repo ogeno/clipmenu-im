@@ -54,7 +54,6 @@ under Debian you can get them with:
 
 ### TODO:
 
-- sometimes (quick successive 'copying' of the same entry to the clipboard?) entry is deleted from history together with its duplicate (in progress, urgent) 
 - use pure `bash`, remove all unnecessary calls to external tools (in progress, not urgent)
 - some dmenu "skinning" depending on what we are doing (copy/delete) (in progress, not urgent)
 - purging history by sending SIGHUP to `clipmenud` seems more 'standard' (in progress, not urgent)
