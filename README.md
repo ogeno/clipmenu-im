@@ -7,11 +7,11 @@ This version allows you to manage (add, remove, purge) entries in your clipboard
 ## Features:
 
 - **copy** an entry from history to clipboard
-- **remove** entries from history on demand (new!)
+- **remove** entries from history on demand (dude, I missed this one)
 - **autoremove empty** or blank entries (new!)
 - **limit duplicates** creation (in progress)
 - **purge** history on demand (new!)
-- option to use **cli-based menu** instead of `dmenu` (new!)
+- option to use **cli-based menu** or **gtk-based menu** instead of `dmenu` (new!)
 - accept any `dmenu` options on commandline 
 
 ## Usage:
@@ -38,7 +38,7 @@ If you want to **purge** the history, use:
 
     clipmenu-im -D
 
-If you would like to use `clipmenu-im` with **cli-based menu** instead of `dmenu` add `-c` switch to any of the above commands, eg:
+If you would like to use `clipmenu-im` with **cli-based menu** instead of `dmenu` add `-c` switch ('-z' for `zenity` dialog) to any of the above commands, eg:
 
     clipmenu-im -c -d
 
@@ -46,11 +46,11 @@ will let you delete entries using text menu in terminal.
 
 ### Dependencies:
 
-[dmenu](http://tools.suckless.org/dmenu) (optional, recommended), `xclip`, `xsel`
+[dmenu](http://tools.suckless.org/dmenu) (optional, recommended), `xclip`, `xsel`, zenity (optional, only if you want gtk gui)
 
 under Debian you can get them with:
 
-    sudo apt-get install suckless-tools xclip xsel
+    sudo apt-get install suckless-tools xclip xsel zenity
 
 ### TODO:
 
