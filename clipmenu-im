@@ -36,6 +36,7 @@ for arg in "$@"; do # very crude command line arguments parsing
     '-c') cli_menu=1 ;; # force use of 'select' instead of dmenu
     '-d') action='delete' dmenu_sb="$dmenu_sb_delete" dmenu_p="$dmenu_p_delete " ;; # delete from history (multi-selection possible) 
     '-D') echo "Sure to purge the clipboard history? [y|N]" ; read -n1 a ; echo ; [[ "$a" =~ y|Y|t|T ]] && rm $cache_dir/* ; exit 0;; # purge the whole history
+    '-z') zenity_menu=1 ;; # force use of 'select' instead of dmenu
     *) dmenu_opts+=" $arg";; # dump here all dmenu options from command line
   esac
 done
@@ -80,6 +81,9 @@ while : ; do
   # use cli-based menu instead of dmenu
   if [[ "$cli_menu" -eq 1 ]]; then
     select chosen_line in "${ordered_selections[@]}"; do break; done
+  elif [[ "$zenity_menu" -eq 1 ]]; then
+    # chosen_line=$(zenity --list --width=1200 --height=250 --editable --column="clipboard history" "$(printf '%s\n' "${ordered_selections[@]}")")
+    chosen_line=$(printf '%s\n' "${ordered_selections[@]}" | zenity --list --width=1360 --height=250 --editable --column="clipboard history")
   else
     chosen_line=$(printf '%s\n' "${ordered_selections[@]}" | dmenu $dmenu_opts) 
   fi
