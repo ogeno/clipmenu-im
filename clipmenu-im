@@ -1,6 +1,5 @@
 #!/bin/bash
 # clipmenu-im: manage your clipboard history
-#
 # Copyright (C) 2016 Tomasz Winiarski
 #
 # Credits: this script reuses code from 'clipmenu' by cdown
@@ -9,7 +8,7 @@
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation, either version 3 of the License, or
 # (at your option) any later version.
-
+#
 # This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
@@ -17,9 +16,10 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
+# used by clipmenud to store history entries (in plain-text)
 cache_dir="/tmp/clipmenu.$USER"
-# dmenu default look
-dmenu_l="8"
+# dmenu defaults, overwritten by values given on command line
+dmenu_l=8
 dmenu_p="PASTE"
 dmenu_p_delete="DELETE"
 dmenu_sb="steelblue4"
@@ -28,15 +28,20 @@ dmenu_sb_delete="red"
 LC_COLLATE=C
 # Some people copy/paste huge swathes of text that could slow down dmenu
 line_length_limit=100
+# default to dmenu
+menu="dmenu"
+# zenity defaults
+zenity_height=400
+zenity_width=1000
 
 declare -A selections
 
 for arg in "$@"; do # very crude command line arguments parsing
   case "$arg" in 
-    '-c') cli_menu=1 ;; # force use of 'select' instead of dmenu
+    '-c') menu="cli" ;; # force use of 'select' instead of dmenu
     '-d') action='delete' dmenu_sb="$dmenu_sb_delete" dmenu_p="$dmenu_p_delete " ;; # delete from history (multi-selection possible) 
     '-D') echo "Sure to purge the clipboard history? [y|N]" ; read -n1 a ; echo ; [[ "$a" =~ y|Y|t|T ]] && rm $cache_dir/* ; exit 0;; # purge the whole history
-    '-z') zenity_menu=1 ;; # force use of 'select' instead of dmenu
+    '-z') menu="zenity" ;; # force use of 'select' instead of dmenu
     *) dmenu_opts+=" $arg";; # dump here all dmenu options from command line
   esac
 done
@@ -57,6 +62,7 @@ while : ; do
   for (( i=${#files[@]}-1; i>=0; i-- )); do
       file=${files[$i]}
 
+      # instead of cut, sed, wc we use bash array, string operations and for...in loop
       readarray -t lines <"$file"
 
       number_of_lines=${#lines[@]}
@@ -67,9 +73,9 @@ while : ; do
         first_line="${line:0:$line_length_limit}"  
         break
       done
-      # if file is empty or blank, we skip to the next one 
+      # if file is empty or blank skip it
       if [[ ! "$first_line" ]]; then
-        rm "$file" # if you wish to remove empty file uncomment this
+        rm "$file" # uncomment to autoremove the file
         continue
       fi
 
@@ -78,12 +84,12 @@ while : ; do
       ordered_selections+=("$first_line")
       selections[$first_line]=$file 
   done
-  # use cli-based menu instead of dmenu
-  if [[ "$cli_menu" -eq 1 ]]; then
+  # use select built-in instead of dmenu
+  if [[ "$menu" == "cli" ]]; then
     select chosen_line in "${ordered_selections[@]}"; do break; done
-  elif [[ "$zenity_menu" -eq 1 ]]; then
-    # chosen_line=$(zenity --list --width=1200 --height=250 --editable --column="clipboard history" "$(printf '%s\n' "${ordered_selections[@]}")")
-    chosen_line=$(printf '%s\n' "${ordered_selections[@]}" | zenity --list --width=1360 --height=250 --editable --column="clipboard history")
+  # use zenity list window instead of dmenu
+  elif [[ "$menu" == "zenity" ]]; then
+    chosen_line=$(printf '%s\n' "${ordered_selections[@]}" | zenity --list --width=$zenity_width --height=$zenity_height --column="clipboard history")
   else
     chosen_line=$(printf '%s\n' "${ordered_selections[@]}" | dmenu $dmenu_opts) 
   fi
