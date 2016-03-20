@@ -38,7 +38,7 @@ If you want to **purge** the history, use:
 
     clipmenu-im -D
 
-If you would like to use `clipmenu-im` with **cli-based menu** instead of `dmenu` add `-c` switch ('-z' for `zenity` dialog) to any of the above commands, eg:
+If you would like to use `clipmenu-im` with **cli-based menu** instead of `dmenu` add `-c` switch (`-z` for `zenity` dialog) to any of the above commands, eg:
 
     clipmenu-im -c -d
 
