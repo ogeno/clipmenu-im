@@ -89,7 +89,7 @@ while : ; do
     select chosen_line in "${ordered_selections[@]}"; do break; done
   # use zenity list window instead of dmenu
   elif [[ "$menu" == "zenity" ]]; then
-    chosen_line=$(printf '%s\n' "${ordered_selections[@]}" | zenity --list --width=$zenity_width --height=$zenity_height --column="clipboard history" 2>/dev/null)
+    chosen_line=$(printf '%s\n' "${ordered_selections[@]}" | zenity --list --multiple --width=$zenity_width --height=$zenity_height --column="clipboard history" 2>/dev/null)
   else
     chosen_line=$(printf '%s\n' "${ordered_selections[@]}" | dmenu $dmenu_opts) 
   fi
